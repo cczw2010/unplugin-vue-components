@@ -15,7 +15,7 @@ const getRenderFnStart = (ast: ParseResult<File>): number => {
   const renderFn = ast.program.body.find((node): node is VariableDeclaration =>
     node.type === 'VariableDeclaration'
       && node.declarations[0].id.type === 'Identifier'
-      && ['render', '_sfc_render'].includes(node.declarations[0].id.name),
+      && ['render', '_sfc_render','__vue_render__'].includes(node.declarations[0].id.name),
   )
   const start = (((renderFn?.declarations[0].init as FunctionExpression)?.body) as BlockStatement)?.start
   if (start === null || start === undefined)
